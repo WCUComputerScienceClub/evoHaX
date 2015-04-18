@@ -1,17 +1,19 @@
 {
-    "manifest_version": 0,
+    "manifest_version": 2,
 
-    "name": "EasyNav/BlindlyGo",
+    "name": "JumpKey",
     "description": "An extension to allow for a universal keyboard shortcut experience across all webpages.",
-    "version": "0.0",
-
-    "browser_action": {
-        "default_icon": "icon.png",
-        "default_popup": "popup.html"
-    },
-
-    "permissions": [
-        "activeTab",
-        
-    ]
+    "version": "0.1",
+	
+	"background": {
+		"persistent": true,
+		"scripts": ["background.js"]
+	},
+	
+	"content_scripts": [
+		{
+			"matches":["http://*/*"],
+			"js":["contentScript.js"]
+		}
+	]
 }
