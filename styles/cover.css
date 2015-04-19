@@ -53,6 +53,15 @@ body {
   margin-left: auto;
 }
 
+.hotkeyTable{
+	width: 100%;
+	position: center;
+	
+}
+th{
+	text-align: left;
+}
+
 /* Padding for spacing */
 .inner {
   padding: 30px;
