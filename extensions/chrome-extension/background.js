@@ -2,8 +2,6 @@
 // receive message from content script
 var tabs = [];
 
-var hostDomain = "";
-
 // recieve message from content script
 //301 is the value for the alt key
 
@@ -34,9 +32,9 @@ chrome.tabs.onUpdated.addListener(
         // Update the hostDomain for a tab
         for(var i = 0; i < tabs.length; i++){
             if(tabs[i].tabId == tabId){
-                console.log("Previous Domain: " + hostDomain);
+                console.log("Previous Domain: " + tabs[i].hostDomain);
                 tabs[i].hostDomain = getTheDomainFromURL(tab.url);
-                console.log("New Domain: " + hostDomain);
+                console.log("New Domain: " + tabs[i].hostDomain);
                 break;
             }
         }
@@ -45,10 +43,11 @@ chrome.tabs.onUpdated.addListener(
 
 // New Tab
 chrome.tabs.onCreated.addListener(
-    function(tabId, changeInfo, tab){
+    function(tab){
         // Sets up the new Tab Object and adds it to the tabs array
         console.log("onCreated");
-        tabs.push({ tabId: tabId, hostDomain: tab.url })
+        tabs.push({ tabId: tab.id, hostDomain: tab.url })
+        console.log(tabs)
     }
 );
                
