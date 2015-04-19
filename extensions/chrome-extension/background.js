@@ -15,11 +15,11 @@ function recieveMessage(request, sender, sendResponse) {
         switch(hotkey){
 		case "65": //go to about us
             if(debug)alert("About Us");
-			sendMessage("about-us");
+			sendMessage("aboutus");
             break;
 		case "67": //go to contact us
             if(debug)alert("Contact Us");
-			sendMessage("contact-us");
+			sendMessage("contactus");
             break;
         case "72": //go to home page
             if(debug)alert("Home");
@@ -113,10 +113,10 @@ function sendMessage(action){
                         break;
                     case "aboutus":
                     case "contactus":
-                    case "support":
-                    case "support":
-                    case "login":
-                    case "jobs":
+//                    case "support":
+//                    case "support":
+//                    case "login":
+//                    case "jobs":
                         url = tabs[i].actionURL;
                         break;
                 }

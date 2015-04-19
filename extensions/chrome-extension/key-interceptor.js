@@ -58,6 +58,8 @@ var buzzWords = [
     "aboutus", "about",
     "contactus", "contact",
     "support", "help",
+    "login",
+    "jobs","career","career"
 ];
 
 function gatherAndProcess() {
@@ -81,13 +83,20 @@ function gatherAnchorTags(){
 }
 
 function processLinks(){
+    
+    sortLinks();
+    
     if(debug) console.log("plinks: " + links);
     for (var i = 0; i < links.length; i++) {
         for (var j = 0; j < buzzWords.length; j++) {
             if(debug) console.log("linkdata: " + links[i]);
+            
             var word = buzzWords[j];
+            
             if(debug) console.log("linkurl: " + links[i].url);
+            
             if(doesURLContainMatch(removePunctuationFromURL(links[i].url), word)){
+                
                 var action = "";
                 
                 if(word == "aboutus" || word == "about"){
@@ -96,6 +105,10 @@ function processLinks(){
                     action = "contactus";
                 }else if(word == "support"){
                     action = "support";
+                }else if(word == "login"){
+                    action = "login";
+                } else if(word == "jobs" || word == "career" || word == "careers"){
+                    action = "jobs";
                 }
                     
                 sendMessageToBackground({url: links[i].url, action: action});
@@ -122,6 +135,19 @@ function doesURLContainMatch(url, word){
 function removePunctuationFromURL(url){
     if(debug) console.log("removePunc: " + url)
     return url.replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+}
+
+
+/**
+ * Sort links on length
+ */
+function sortLinks(){
+    if(debug) alert(links[0]);
+    links.sort(function(a, b) {
+        return  a.url.length - b.url.length; // ASC -> a - b; DESC -> b - a
+    });
+    if(debug) console.log(links);
+    if(debug) alert(links[0]);
 }
 
 /******************************************************************************
