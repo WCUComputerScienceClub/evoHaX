@@ -53,9 +53,8 @@ body {
   margin-left: auto;
 }
 
-.hotkeyTable{
-	width: 100%;
-	position: center;	
+table{
+	width: 100%;	
 }
 th{
 	text-align: left;
