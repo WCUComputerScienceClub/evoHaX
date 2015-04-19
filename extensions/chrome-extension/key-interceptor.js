@@ -62,6 +62,8 @@ var buzzWords = [
     "jobs","career","career"
 ];
 
+var urlPattern = "/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/";
+
 function gatherAndProcess() {
     gatherAnchorTags();
     processLinks();
