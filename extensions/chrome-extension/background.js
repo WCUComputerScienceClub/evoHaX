@@ -1,14 +1,11 @@
-
-
 // receive message from content script
 var tabs = [];
 
 // recieve message from content script
 //301 is the value for the alt key
 
-function receiveMessage(request, sender, sendResponse) {
-	console.log("receiveMessage");
-    var hotkey = request.hotkey.substring(7,9);
+function recieveMessage(request, sender, sendResponse) {
+	var hotkey = request.hotkey.substring(7,9);
 	console.log("Hotkey: " + hotkey);
 	
 	switch(hotkey){
@@ -24,14 +21,13 @@ function receiveMessage(request, sender, sendResponse) {
 	}
 }
 
-chrome.runtime.onMessage.addListener(receiveMessage);
+chrome.runtime.onMessage.addListener(recieveMessage);
 
 // Current Tab Changed
 chrome.tabs.onUpdated.addListener(
     function(tabId, changeInfo, tab){
-        console.log("onUpdate");
-        // Update the hostDomain for a tab
-        for(var i = 0; i < tabs.length; i++){
+        // Update the previousDomain for a tab
+        for(int i = 0; i < tabs.length; i++){
             if(tabs[i].tabId == tabId){
                 console.log("Previous Domain: " + tabs[i].hostDomain);
                 tabs[i].hostDomain = getTheDomainFromURL(tab.url);
@@ -55,9 +51,8 @@ chrome.tabs.onCreated.addListener(
 // Tab Closed
 chrome.tabs.onRemoved.addListener(
     function(tabId, changeInfo, tab){
-        console.log("onRemove");
         // Removes the closed tab from the tabs array based on tabId
-        for(var i = 0; i < tabs.length; i++){
+        for(int i = 0; i < tabs.length; i++){
             if(tabs[i].tabId == tabId){
                 tabs.splice(i, 1);
                 break;
