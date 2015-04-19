@@ -114,14 +114,11 @@ function sendMessage(action){
                     case "aboutus":
                     case "contactus":
                     case "support":
+                    case "support":
+                    case "login":
+                    case "jobs":
                         url = tabs[i].actionURL;
                         break;
-					case "support":
-						break;
-					case "login":
-						break;
-					case "jobs":
-						break;
                 }
                 break;
             }
