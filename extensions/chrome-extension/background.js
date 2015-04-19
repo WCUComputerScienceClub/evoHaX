@@ -31,6 +31,10 @@ function recieveMessage(request, sender, sendResponse) {
 			if(debug)alert("Login");
 			sendMessage("login");
 			break;
+		case "74": //go to jobs/careers
+			if(debug)alert("Jobs");
+			sendMessage("jobs");
+			break;
 			
         // Cases to add?
         // - terms? 
@@ -100,6 +104,8 @@ function sendMessage(action){
 					case "support":
 						break;
 					case "login":
+						break;
+					case "jobs":
 						break;
                 }
                 break;

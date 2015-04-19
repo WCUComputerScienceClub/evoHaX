@@ -30,6 +30,11 @@ onkeydown = onkeyup = function(e){
 		sendMessage(301, 16, 76);
 		map.length = 0;
 	}
+	
+	else if(e.altKey && map[16] && map[74]){ //AltShiftJ
+		sendMessage(301, 16, 74);
+		map.length = 0;
+	}
 }
 
 
