@@ -1,4 +1,4 @@
-// recieve message from content script
+// receive message from content script
 //301 is the value for the alt key
 
 function recieveMessage(request, sender, sendResponse) {
