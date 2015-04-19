@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<script>
+
+
+    // Register for the validate and command events.
+    safari.application.addEventListener("command", performCommand, false);
+    safari.application.addEventListener("validate", validateCommand, false);
+    
+    
+    // Function to perform when event is received
+    function performCommand(event) {
+        // Make sure event comes from the button
+        if (event.command !== "main_button_jumpkey") {
+            // This is where we finally respond to the click
+            return;
+        }
+        
+        // Test Successful, DO THE THING!
+        var currentURL = event.target.browserWindow.activeTab.URL;
+        var jumpHome = safari.application.activeBrowserWindow.newTab();
+    }
+    
+    
+</script>
+
+
+<!DOCTYPE HTML>
+<script>
+// Register for the validate and command events.
+safari.application.addEventListener("command", performCommand, false);
+safari.application.addEventListener("validate", validateCommand, false);
+ 
+function performCommand(event)
+{
+    // You should always check the command.
+    if (event.command !== "reload-page")
+        return;
+ 
+    // Get the current tab's URL. This URL can be undefined if the
+    // page is blank or the user is at a page like Top Sites. To
+    // get the URL, the extension must have permissions to access
+    // the page at that URL. The Web Site Access Level setting in
+    // the Extension Builder controls this. This particular extension
+    // wants an access level of "All" so that it can reload all tabs.
+    var currentURL = event.target.browserWindow.activeTab.url;
+    if (currentURL)
+        event.target.browserWindow.activeTab.url = currentURL;
+}
+ 
+function validateCommand(event)
+{
+    // You should always check the command.
+    if (event.command !== "reload-page")
+        return;
+ 
+    // Disable the target if the current tab has no URL.
+    event.target.disabled = !event.target.browserWindow.activeTab.url;
+}
+</script>

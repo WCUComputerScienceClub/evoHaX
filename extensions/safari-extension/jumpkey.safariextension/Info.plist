@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>WCU Computer Science Club</string>
+	<key>Builder Version</key>
+	<string>10600.4.10.7</string>
+	<key>CFBundleDisplayName</key>
+	<string>JumpKey</string>
+	<key>CFBundleIdentifier</key>
+	<string>ninja.jumpkey</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>Chrome</key>
+	<dict>
+		<key>Context Menu Items</key>
+		<array>
+			<dict>
+				<key>Command</key>
+				<string>jumpto</string>
+				<key>Identifier</key>
+				<string>context_menu_jumpkey</string>
+				<key>Title</key>
+				<string>JumpKey, jump to...</string>
+			</dict>
+		</array>
+		<key>Database Quota</key>
+		<real>1048576</real>
+		<key>Global Page</key>
+		<string>global.html</string>
+		<key>Toolbar Items</key>
+		<array>
+			<dict>
+				<key>Command</key>
+				<string>main_button_jumpkey</string>
+				<key>Identifier</key>
+				<string>main_button_jumpkey</string>
+				<key>Image</key>
+				<string>icon.png</string>
+				<key>Label</key>
+				<string>JumpKey</string>
+				<key>Palette Label</key>
+				<string>JumpKey</string>
+				<key>Tool Tip</key>
+				<string>JumpKey Settings</string>
+			</dict>
+		</array>
+	</dict>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict/>
+	</dict>
+	<key>Description</key>
+	<string>An extension to allow for a universal keyboard shortcut experience across all webpages.</string>
+	<key>DeveloperIdentifier</key>
+	<string></string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>All</string>
+		</dict>
+	</dict>
+	<key>Website</key>
+	<string>http://www.jumpkey.ninja</string>
+</dict>
+</plist>
