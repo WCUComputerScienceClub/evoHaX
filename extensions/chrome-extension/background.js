@@ -2,13 +2,14 @@
 // receive message from content script
 var tabs = [];
 
-var previousDomain = "";
+var hostDomain = "";
 
 // recieve message from content script
 //301 is the value for the alt key
 
-function recieveMessage(request, sender, sendResponse) {
-	var hotkey = request.hotkey.substring(7,9);
+function receiveMessage(request, sender, sendResponse) {
+	console.log("receiveMessage");
+    var hotkey = request.hotkey.substring(7,9);
 	console.log("Hotkey: " + hotkey);
 	
 	switch(hotkey){
@@ -24,15 +25,19 @@ function recieveMessage(request, sender, sendResponse) {
 	}
 }
 
-chrome.runtime.onMessage.addListener(recieveMessage);
+chrome.runtime.onMessage.addListener(receiveMessage);
 
 // Current Tab Changed
 chrome.tabs.onUpdated.addListener(
     function(tabId, changeInfo, tab){
-        // Update the previousDomain for a tab
-        for(int i = 0; i < tabs.length; i++){
+        console.log("onUpdate");
+        // Update the hostDomain for a tab
+        for(var i = 0; i < tabs.length; i++){
             if(tabs[i].tabId == tabId){
-                tabs[i].previousDomain = getTheDomainFromURL(tab.url);
+                console.log("Previous Domain: " + hostDomain);
+                tabs[i].hostDomain = getTheDomainFromURL(tab.url);
+                console.log("New Domain: " + hostDomain);
+                break;
             }
         }
     }
@@ -42,15 +47,17 @@ chrome.tabs.onUpdated.addListener(
 chrome.tabs.onCreated.addListener(
     function(tabId, changeInfo, tab){
         // Sets up the new Tab Object and adds it to the tabs array
-        tabs.push({ tabId: tabId, previousDomain: tab.url })
+        console.log("onCreated");
+        tabs.push({ tabId: tabId, hostDomain: tab.url })
     }
 );
                
 // Tab Closed
 chrome.tabs.onRemoved.addListener(
     function(tabId, changeInfo, tab){
+        console.log("onRemove");
         // Removes the closed tab from the tabs array based on tabId
-        for(int i = 0; i < tabs.length; i++){
+        for(var i = 0; i < tabs.length; i++){
             if(tabs[i].tabId == tabId){
                 tabs.splice(i, 1);
                 break;
