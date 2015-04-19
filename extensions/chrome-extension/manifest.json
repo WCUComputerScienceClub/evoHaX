@@ -14,12 +14,11 @@
 		{
 
 			"matches":["http://*/*", "https://*/*"], // Injects on all pages matching the pattern
-			"js":["jquery-1.11.2.min.js", "key-interceptor.js", "scraper.js"] // .js files to inject
+			"js":["jquery-1.11.2.min.js", "key-interceptor.js"] // .js files to inject
 		}
 	],
     
     "permissions": [
         "tabs"
     ]
-
 }
