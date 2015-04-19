@@ -1,3 +1,5 @@
+var debug = false;
+
 // receive message from content script
 var tabs = [];
 
@@ -6,18 +8,23 @@ var tabs = [];
 
 function recieveMessage(request, sender, sendResponse) {
 	var hotkey = request.hotkey.substring(7,9);
-	console.log("Hotkey: " + hotkey);
+	if(debug) console.log("Hotkey: " + hotkey);
 	
 	switch(hotkey){
 		case "65": //go to about us
-		alert("About Us");
-		break;
-		case "72": //go to home page
-		alert("Home");
-		break;
+            if(debug)alert("About Us");
+            break;
 		case "67": //go to contact us
-		alert("Contact Us");
-		break;
+            if(debug)alert("Contact Us");
+            break;
+        case "72": //go to home page
+            if(debug)alert("Home");
+            sendMessage("home");
+            break;
+            
+        // Cases to add?
+        // - support
+        // - terms
 	}
 }
 
@@ -27,11 +34,11 @@ chrome.runtime.onMessage.addListener(recieveMessage);
 chrome.tabs.onUpdated.addListener(
     function(tabId, changeInfo, tab){
         // Update the previousDomain for a tab
-        for(int i = 0; i < tabs.length; i++){
+        for(var i = 0; i < tabs.length; i++){
             if(tabs[i].tabId == tabId){
-                console.log("Previous Domain: " + tabs[i].hostDomain);
+                if(debug) console.log("Previous Domain: " + tabs[i].hostDomain);
                 tabs[i].hostDomain = getTheDomainFromURL(tab.url);
-                console.log("New Domain: " + tabs[i].hostDomain);
+                if(debug) console.log("New Domain: " + tabs[i].hostDomain);
                 break;
             }
         }
@@ -42,9 +49,9 @@ chrome.tabs.onUpdated.addListener(
 chrome.tabs.onCreated.addListener(
     function(tab){
         // Sets up the new Tab Object and adds it to the tabs array
-        console.log("onCreated");
+        if(debug) console.log("onCreated");
         tabs.push({ tabId: tab.id, hostDomain: tab.url })
-        console.log(tabs)
+        if(debug) console.log(tabs)
     }
 );
                
@@ -52,7 +59,7 @@ chrome.tabs.onCreated.addListener(
 chrome.tabs.onRemoved.addListener(
     function(tabId, changeInfo, tab){
         // Removes the closed tab from the tabs array based on tabId
-        for(int i = 0; i < tabs.length; i++){
+        for(var i = 0; i < tabs.length; i++){
             if(tabs[i].tabId == tabId){
                 tabs.splice(i, 1);
                 break;
@@ -64,3 +71,47 @@ chrome.tabs.onRemoved.addListener(
 function getTheDomainFromURL(url){
     return new URL(url).hostname;
 }
+
+function sendMessage(action){
+    
+    chrome.tabs.query({active: true, currentWindow: true}, function(activeTabs) {
+        var activeTab = activeTabs[0];
+        var url = "";
+        
+        for (var i = 0; i < tabs.length; i++) {
+            if (tabs[i].tabId == activeTab.id) {
+                switch(action){
+                    case "home":
+                        url = "http://" + tabs[i].hostDomain;
+                        break;
+                    case "about-us":
+                        break;
+                    case "contact-us":
+                        break;
+                }
+                break;
+            }
+        }
+        
+        chrome.tabs.sendMessage(activeTab.id, {url: url }, function(response) {
+            if(debug) console.log("Message Sent! " + url);
+        });
+    });
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

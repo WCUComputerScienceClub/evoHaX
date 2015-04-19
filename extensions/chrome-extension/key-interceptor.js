@@ -1,3 +1,5 @@
+var debug = false;
+
 // send hotkey to background script
 //301 is the value for the alt key
 
@@ -22,19 +24,15 @@ onkeydown = onkeyup = function(e){
 
 
 function sendMessage(num1, num2, num3) {
-	console.log("Sending Message.");
+	if(debug) console.log("Sending Message.");
 	chrome.runtime.sendMessage({hotkey: num1 + " " + num2 + " " + num3}, 
 	function(response) {
-		console.log("Response received.");
+		if(debug) console.log("Response received.");
 	});
 }
 
-// create test button
-// var button = document.createElement("button");
-// button.setAttribute("id", "testButton");
-// button.innerHTML = "Send Test Message";
-// button.addEventListener("mouseup", sendMessage);
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+//    location.href = request.url;
+    window.open(request.url, "_self");
+});
 
-
-// add button to page
-// document.body.appendChild(button);
