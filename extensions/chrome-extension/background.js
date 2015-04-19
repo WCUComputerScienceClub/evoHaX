@@ -13,18 +13,27 @@ function recieveMessage(request, sender, sendResponse) {
 	switch(hotkey){
 		case "65": //go to about us
             if(debug)alert("About Us");
+			sendMessage("about-us");
             break;
 		case "67": //go to contact us
             if(debug)alert("Contact Us");
+			sendMessage("contact-us");
             break;
         case "72": //go to home page
             if(debug)alert("Home");
             sendMessage("home");
             break;
-            
+		case "83": //go to support
+			if(debug)alert("Support");
+			sendMessage("support");
+			break;
+		case "76": //go to login 
+			if(debug)alert("Login");
+			sendMessage("login");
+			break;
+			
         // Cases to add?
-        // - support
-        // - terms
+        // - terms? 
 	}
 }
 
@@ -88,6 +97,10 @@ function sendMessage(action){
                         break;
                     case "contact-us":
                         break;
+					case "support":
+						break;
+					case "login":
+						break;
                 }
                 break;
             }
