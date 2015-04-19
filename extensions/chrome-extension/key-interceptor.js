@@ -24,6 +24,21 @@ onkeydown = onkeyup = function(e){
 		sendMessageToBackground({hotkey: 301 + " " + 16 + " " + 67});
 		map.length = 0;
 	}
+	
+	else if(e.altKey && map[16] && map[83]){ //AltShiftS
+		sendMessage(301, 16, 83);
+		map.length = 0;
+	}
+	
+	else if(e.altKey && map[16] && map[76]){ //AltShiftL
+		sendMessage(301, 16, 76);
+		map.length = 0;
+	}
+	
+	else if(e.altKey && map[16] && map[74]){ //AltShiftJ
+		sendMessage(301, 16, 74);
+		map.length = 0;
+	}
 }
 
 

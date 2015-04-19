@@ -13,18 +13,30 @@ function recieveMessage(request, sender, sendResponse) {
         if(debug) console.log("Hotkey: " + hotkey);
 
         switch(hotkey){
-            case "65": //go to about us
-                if(debug)alert("About Us");
-                sendMessage("aboutus");
-                break;
-            case "67": //go to contact us
-                if(debug)alert("Contact Us");
-                sendMessage("contactus");
-                break;
-            case "72": //go to home page
-                if(debug)alert("Home");
-                sendMessage("home");
-                break;
+		case "65": //go to about us
+            if(debug)alert("About Us");
+			sendMessage("about-us");
+            break;
+		case "67": //go to contact us
+            if(debug)alert("Contact Us");
+			sendMessage("contact-us");
+            break;
+        case "72": //go to home page
+            if(debug)alert("Home");
+            sendMessage("home");
+            break;
+		case "83": //go to support
+			if(debug)alert("Support");
+			sendMessage("support");
+			break;
+		case "76": //go to login 
+			if(debug)alert("Login");
+			sendMessage("login");
+			break;
+		case "74": //go to jobs/careers
+			if(debug)alert("Jobs");
+			sendMessage("jobs");
+			break;
         }
     } else if (request.url && request.action) {
         // handle scraper request
@@ -104,6 +116,12 @@ function sendMessage(action){
                     case "support":
                         url = tabs[i].actionURL;
                         break;
+					case "support":
+						break;
+					case "login":
+						break;
+					case "jobs":
+						break;
                 }
                 break;
             }
