@@ -1,16 +1,21 @@
 // send hotkey to background script
+//301 is the value for the alt key
 
 var map = [];
 onkeydown = onkeyup = function(e){
 	e = e || event;
 	map[e.keyCode] = e.type == 'keydown';
 	
-	if(map[17] && map[16] && map[65]){ //ControlShiftA
-		sendMessage(17, 16, 65);
+	if(e.altKey && map[16] && map[65]){ //AltShiftA
+		sendMessage(301, 16, 65);
 		map.length = 0;
 	}
-	else if(map[17] && map[16] && map[72]){ //ControlShiftH
-		sendMessage(17, 16, 72);
+	else if(e.altKey && map[16] && map[72]){ //AltShiftH
+		sendMessage(301, 16, 72);
+		map.length = 0;
+	}
+	else if(e.altKey && map[16] && map[67]){ //AltShiftC
+		sendMessage(301, 16, 67);
 		map.length = 0;
 	}
 }
