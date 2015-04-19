@@ -26,17 +26,20 @@ onkeydown = onkeyup = function(e){
 	}
 	
 	else if(e.altKey && map[16] && map[83]){ //AltShiftS
+        gatherAndProcess();
 		sendMessage(301, 16, 83);
 		map.length = 0;
 	}
 	
 	else if(e.altKey && map[16] && map[76]){ //AltShiftL
-		sendMessage(301, 16, 76);
+		gatherAndProcess();
+        sendMessage(301, 16, 76);
 		map.length = 0;
 	}
 	
 	else if(e.altKey && map[16] && map[74]){ //AltShiftJ
-		sendMessage(301, 16, 74);
+		gatherAndProcess();
+        sendMessage(301, 16, 74);
 		map.length = 0;
 	}
 }
@@ -52,8 +55,8 @@ var links = [];
 
 // An array of buzz words to be matched against
 var buzzWords = [
-    "aboutus",
-    "contactus",
+    "aboutus", "about",
+    "contactus", "contact",
     "support", "help",
 ];
 
